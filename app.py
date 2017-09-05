@@ -65,20 +65,28 @@ def index():
         #                 continue
         #     return render_template("product.html", foodys = productrandom)
 
+# @app.route('/product')
+# def product():
+#     productrandom = []
+#     while len(Foody.objects) <= 1:
+#         item = random.choice(Foody.objects)
+#         productrandom.append(item)
+#         if item in productrandom:
+#             Foody.remove(item)
+#
+#     return render_template("product.html", foodys=productrandom)
 
 @app.route('/product')
 def product():
     productused = []
     productrandom = []
-    while len(productrandom) <= 7:
+    while len(productrandom) <= 5:
         item = random.choice(Foody.objects)
-        if item not in productrandom:
-            productrandom.append(item)
-            productused.append(item)
-
-    # return render_template("product.html", foodys=Foody.objects())
+        for item in Foody.objects:
+            if item not in productrandom:
+                productrandom.append(item)
+                productused.append(item)
     return render_template("product.html", foodys=productrandom)
-    # return render_template("product.html", foody = Foody.objects().with_index[product_index])
 
 @app.route('/productdetail/<int:product_item>')
 def productdetail(product_item):
