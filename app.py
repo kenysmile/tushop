@@ -27,14 +27,14 @@ hongtrasuibot = Foody("hongtrasuibot", "Hồng trà sủi bọt", "http://store.
 trasua = Foody("trasua", "Trà sữa", "https://s-media-cache-ak0.pinimg.com/originals/f2/d1/96/f2d196363da420e1212d74e2553a71f3.jpg", "98-126 Nguyễn Tri Phương, Phường 7, Quận 5, Hồ Chí Minh", "https://www.google.com/maps/place/98-%3E126+Nguy%E1%BB%85n+Tri+Ph%C6%B0%C6%A1ng,+Ph%C6%B0%E1%BB%9Dng+7,+Qu%E1%BA%ADn+5,+H%E1%BB%93+Ch%C3%AD+Minh,+Vi%E1%BB%87t+Nam/@10.7540384,106.6675623,17z/data=!3m1!4b1!4m5!3m4!1s0x31752efbf2b7d7b9:0x4474da772512a3f1!8m2!3d10.7540331!4d106.669751", 7.5, "$15")
 laukem = Foody("laukem", "Lẩu kem", "http://muare1.vcmedia.vn/images/2013/07/06/mr_330695_85b505ad0d7abd7c.png", "6A Trần Hưng Đạo, Phạm Ngũ Lão, Quận 1, Hồ Chí Minh", "https://www.google.com/maps/place/6A+Tr%E1%BA%A7n+H%C6%B0ng+%C4%90%E1%BA%A1o,+Ph%E1%BA%A1m+Ng%C5%A9+L%C3%A3o,+Qu%E1%BA%ADn+1,+H%E1%BB%93+Ch%C3%AD+Minh,+Vi%E1%BB%87t+Nam/@10.7693412,106.6940223,17z/data=!3m1!4b1!4m5!3m4!1s0x31752f3e4f599229:0xfa8397214daa9999!8m2!3d10.7693359!4d106.696211", 8, "$20")
 #
-sunsetsoda.save()
-sodatao.save()
-trasuaphomaituoi.save()
-pizzahaisan.save()
-fruitteablueberry.save()
-hongtrasuibot.save()
-trasua.save()
-laukem.save()
+# sunsetsoda.save()
+# sodatao.save()
+# trasuaphomaituoi.save()
+# pizzahaisan.save()
+# fruitteablueberry.save()
+# hongtrasuibot.save()
+# trasua.save()
+# laukem.save()
 
 @app.route('/')
 def index():
@@ -75,18 +75,23 @@ def index():
 #             Foody.remove(item)
 #
 #     return render_template("product.html", foodys=productrandom)
+#     productrandom = []
+#     while len(productrandom) <= 6:
+#         item = random.choice(Foody.objects)
+#         if item not in productrandom:
+#             productrandom.append(item)
+#             print(productrandom)
+
 
 @app.route('/product')
 def product():
-    productused = []
     productrandom = []
-    while len(productrandom) <= 5:
+    while len(productrandom) <= 7:
         item = random.choice(Foody.objects)
-        for item in Foody.objects:
-            if item not in productrandom:
-                productrandom.append(item)
-                productused.append(item)
+        if item not in productrandom:
+            productrandom.append(item)
     return render_template("product.html", foodys=productrandom)
+
 
 @app.route('/productdetail/<int:product_item>')
 def productdetail(product_item):
